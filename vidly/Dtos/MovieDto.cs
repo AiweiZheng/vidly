@@ -5,9 +5,9 @@ using System.Linq;
 using System.Web;
 using vidly.Models;
 
-namespace Vidly.Models
+namespace vidly.Dtos
 {
-    public class Movie
+    public class MovieDto
     {
         public int Id { get; set; }
 
@@ -15,22 +15,17 @@ namespace Vidly.Models
         [StringLength(255)]
         public string Name { get; set; }
 
+        [Range(0, 20)]
+        public int NumberInStock { get; set; }
+
         [Required]
-        [Display(Name = "Release Date")]
+        public byte MovieGenreId { get; set; }
+
         public DateTime ReleaseDate { get; set; }
 
-        [Required]
-        public DateTime DateAdded { get; set; }
-
-        [Required]
-        [Range(0, 20)]
-        [Display(Name = "Number in Stock")]
-        public int NumberInStock { get; set; }
-        
         public MovieGenre MovieGenre { get; set; }
 
-        [Required]
-        [Display(Name = "Genre")]
-        public byte MovieGenreId { get; set; }
+        public DateTime DateAdded { get; set; }
+
     }
 }
