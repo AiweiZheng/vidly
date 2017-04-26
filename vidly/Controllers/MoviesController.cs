@@ -4,10 +4,9 @@ using System.Linq;
 using System.Data.Entity;
 
 using System.Web.Mvc;
-using vidly.Controllers.ViewModels;
+using vidly.ViewModels;
 using vidly.Models;
 using Vidly.Models;
-using WebGrease.Css.Ast;
 
 namespace Vidly.Controllers
 {
@@ -26,9 +25,11 @@ namespace Vidly.Controllers
         }
         public ViewResult Index()
         {
-            var movies = _context.Movies.Include(m => m.MovieGenre).ToList();
+            if (User.IsInRole(RoleName.CanManageMovie))
+                return View("List");
+            
+            return View("ReadOnlyList");
 
-            return View(movies);
         }
 
 
@@ -40,6 +41,7 @@ namespace Vidly.Controllers
             return View(movie);
         }
 
+        [Authorize(Roles = RoleName.CanManageMovie)]
         public ActionResult New()
         {
             var movieGenre = _context.MovieGenres.ToList();
@@ -52,6 +54,7 @@ namespace Vidly.Controllers
             return View("MovieForm", viewModel);
         }
 
+        [Authorize(Roles = RoleName.CanManageMovie)]
         public ActionResult Edit(int id)
         {
             var movie = _context.Movies.SingleOrDefault(m => m.Id == id);

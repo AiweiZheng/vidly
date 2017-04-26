@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.DynamicData;
 using System.Web.Mvc;
-using vidly.Controllers.ViewModels;
+using vidly.ViewModels;
 using vidly.Models;
 using Vidly.Models;
 
@@ -69,8 +69,7 @@ namespace Vidly.Controllers
         // GET: Customer
         public ActionResult Index()
         {
-            var customer = _context.Customers.Include(c=>c.MembershipType).ToList();
-            return View(customer);
+            return View();
         }
 
         public ActionResult Details(int id)

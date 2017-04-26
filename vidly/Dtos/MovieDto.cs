@@ -23,7 +23,7 @@ namespace vidly.Dtos
 
         public DateTime ReleaseDate { get; set; }
 
-        public MovieGenre MovieGenre { get; set; }
+        public MovieGenreDto MovieGenre { get; set; }
 
         public DateTime DateAdded { get; set; }
 

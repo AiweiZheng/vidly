@@ -6,7 +6,7 @@ using System.Web;
 using vidly.Models;
 using Vidly.Models;
 
-namespace vidly.Controllers.ViewModels
+namespace vidly.ViewModels
 {
     public class MovieFormViewModel
     {
